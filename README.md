@@ -142,6 +142,3 @@ DB_DATABASE=prueba_innclod
 DB_USERNAME=prueba_innclod
 DB_PASSWORD=prueba_innclod
 ```
-
-This completes the database setup for your Laravel project.
-```
