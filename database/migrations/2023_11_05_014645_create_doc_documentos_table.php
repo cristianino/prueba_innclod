@@ -28,9 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('DOC_DOCUMENTO', function (Blueprint $table) {
-            $table->dropForeign(['DOC_ID_TIPO', 'DOC_ID_PROCESO']);
-        });
         Schema::dropIfExists('DOC_DOCUMENTO');
     }
 };
