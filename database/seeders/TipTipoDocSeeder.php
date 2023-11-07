@@ -13,15 +13,16 @@ class TipTipoDocSeeder extends Seeder
     public function run(): void
     {
         $tiposDocumentos = [
-            ['TIP_PREFIJO' => 'INGC', 'TIP_NOMBRE' => 'Plan de Ingeniería Civil'],
-            ['TIP_PREFIJO' => 'INGE', 'TIP_NOMBRE' => 'Manual de Ingeniería Eléctrica'],
-            ['TIP_PREFIJO' => 'INGM', 'TIP_NOMBRE' => 'Informe de Ingeniería Mecánica'],
-            ['TIP_PREFIJO' => 'INGS', 'TIP_NOMBRE' => 'Protocolo de Ingeniería de Software'],
-            ['TIP_PREFIJO' => 'INGQ', 'TIP_NOMBRE' => 'Proyecto de Ingeniería Química'],
+            ['TIP_PREFIJO' => 'INS', 'TIP_NOMBRE' => 'Instructivo'],
+            ['TIP_PREFIJO' => 'MAN', 'TIP_NOMBRE' => 'Manual de Usuario'],
+            ['TIP_PREFIJO' => 'PROC', 'TIP_NOMBRE' => 'Procedimiento Operativo'],
+            ['TIP_PREFIJO' => 'POL', 'TIP_NOMBRE' => 'Política Interna'],
+            ['TIP_PREFIJO' => 'GUI', 'TIP_NOMBRE' => 'Guía de Implementación'],
         ];
         
-        foreach ($tiposDocumentos as $tipo) {
-            \App\Models\TipTipoDoc::factory()->create($tipo);
+        foreach ($tiposDocumentos as $tipoDocumento) {
+            \App\Models\TipTipoDoc::factory()->create($tipoDocumento);
         }
+        
     }
 }
