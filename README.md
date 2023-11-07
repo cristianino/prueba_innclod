@@ -142,3 +142,8 @@ DB_DATABASE=prueba_innclod
 DB_USERNAME=prueba_innclod
 DB_PASSWORD=prueba_innclod
 ```
+
+## User credentials
+
+email: test@test.com
+password: Test@123
