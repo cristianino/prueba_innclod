@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDocDocumentoRequest;
 use App\Http\Requests\UpdateDocDocumentoRequest;
 use App\Models\DocDocumento;
+use Inertia\Inertia;
 
 class DocDocumentoController extends Controller
 {
@@ -13,7 +14,15 @@ class DocDocumentoController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $documents = DocDocumento::with(['tipoDoc', 'proceso'])->get();
+            return Inertia::render('Document/Index', [
+                'documents' => $documents
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect("/documento");
+        }
     }
 
     /**
