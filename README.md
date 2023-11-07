@@ -142,7 +142,10 @@ DB_DATABASE=prueba_innclod
 DB_USERNAME=prueba_innclod
 DB_PASSWORD=prueba_innclod
 ```
-
+## Exceute migrations and seeders
+```bash
+php artisan migrate --seed
+```
 ## User credentials
 
 email: test@test.com
