@@ -39,7 +39,9 @@ class DocDocumento extends Model
 
     protected $casts = [
         'DOC_NOMBRE' => 'string',
-        'DOC_CODIGO' => 'integer',
+        'DOC_CODIGO' => 'string',
         'DOC_CONTENIDO' => 'string',
+        'DOC_ID_TIPO' => 'integer',
+        'DOC_ID_PROCESO' => 'integer',
     ];
 }

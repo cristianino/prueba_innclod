@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ProProcesoController;
 use App\Http\Controllers\Api\TipTipoDocController;
+use App\Http\Controllers\DocDocumentoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
