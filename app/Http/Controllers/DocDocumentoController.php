@@ -49,9 +49,29 @@ class DocDocumentoController extends Controller
      */
     public function store(StoreDocDocumentoRequest $request)
     {
+        $tipo = TipTipoDoc::find($request->doc_id_tipo);
+        $proceso = ProProceso::find($request->doc_id_proceso);
+
+        if (!$tipo || !$proceso) {
+            return redirect()->back()->with('error', 'El tipo o proceso seleccionado no existe.');
+        }
+
+        $ultimoDocumento = DocDocumento::where('DOC_CODIGO', 'LIKE', "{$tipo->TIP_PREFIJO}-{$proceso->PRO_PREFIJO}-%")
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $consecutivo = 1;
+
+        if ($ultimoDocumento) {
+            $partes = explode('-', $ultimoDocumento->DOC_CODIGO);
+            $consecutivo = intval(end($partes)) + 1;
+        }
+
+        $nuevoCodigo = "{$tipo->TIP_PREFIJO}-{$proceso->PRO_PREFIJO}-{$consecutivo}";
+
         $documento = new DocDocumento();
         $documento->DOC_NOMBRE = $request->doc_nombre;
-        $documento->DOC_CODIGO = "";
+        $documento->DOC_CODIGO = $nuevoCodigo;
         $documento->DOC_CONTENIDO = $request->doc_contenido;
         $documento->DOC_ID_TIPO = $request->doc_id_tipo;
         $documento->DOC_ID_PROCESO = $request->doc_id_proceso;
@@ -91,9 +111,28 @@ class DocDocumentoController extends Controller
      */
     public function update(UpdateDocDocumentoRequest $request, DocDocumento $docDocumento, $id)
     {
+        $tipo = TipTipoDoc::find($request->doc_id_tipo);
+        $proceso = ProProceso::find($request->doc_id_proceso);
+
+        if (!$tipo || !$proceso) {
+            return redirect()->back()->with('error', 'El tipo o proceso seleccionado no existe.');
+        }
+        $ultimoDocumento = DocDocumento::where('DOC_CODIGO', 'LIKE', "{$tipo->TIP_PREFIJO}-{$proceso->PRO_PREFIJO}-%")
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $consecutivo = 1;
+
+        if ($ultimoDocumento) {
+            $partes = explode('-', $ultimoDocumento->DOC_CODIGO);
+            $consecutivo = intval(end($partes)) + 1;
+        }
+
+        $nuevoCodigo = "{$tipo->TIP_PREFIJO}-{$proceso->PRO_PREFIJO}-{$consecutivo}";
+
         $documento = $docDocumento->find($id);
         $documento->DOC_NOMBRE = $request->doc_nombre;
-        $documento->DOC_CODIGO = "";
+        $documento->DOC_CODIGO = $nuevoCodigo;
         $documento->DOC_CONTENIDO = $request->doc_contenido;
         $documento->DOC_ID_TIPO = $request->doc_id_tipo;
         $documento->DOC_ID_PROCESO = $request->doc_id_proceso;
