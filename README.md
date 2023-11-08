@@ -1,3 +1,113 @@
+
+# Install
+
+## Prerequisites
+
+Before proceeding, ensure you have the following:
+- MariaDB server installed and running
+- Access to the MariaDB command line client with sufficient privileges
+- npm v8 =>
+- composer v2.2.6
+
+## Install dependeces
+```bash
+composer install
+```
+```bash
+npm install
+```
+## compile js and local run
+
+### Compile vite
+```bash
+npm run build
+```
+
+### Local run project
+```bash
+php artisan serve
+```
+
+# Database Creation
+
+This document provides the steps to create a new MariaDB database for the Laravel project.
+
+## Steps to conect DB
+
+### 1. Access the MariaDB Shell
+
+First, access the MariaDB shell using the MariaDB root user or another user with sufficient privileges to create databases and users.
+
+```bash
+mysql -u root -p
+```
+
+Enter the root password when prompted.
+
+### 2. Create the Database
+
+Create the `prueba_innclod` database by executing the following command in the MariaDB shell:
+
+```sql
+CREATE DATABASE prueba_innclod;
+```
+
+### 3. Create the User
+
+Create a new user named `prueba_innclod` with the password `prueba_innclod` using the following command:
+
+```sql
+CREATE USER 'prueba_innclod'@'localhost' IDENTIFIED BY 'prueba_innclod';
+```
+
+Replace `'localhost'` with `'%'` if you wish to allow this user to connect from any host.
+
+### 4. Grant Permissions
+
+Grant all privileges on the `prueba_innclod` database to the user `prueba_innclod` with the following command:
+
+```sql
+GRANT ALL PRIVILEGES ON prueba_innclod.* TO 'prueba_innclod'@'localhost';
+```
+
+### 5. Apply the Changes
+
+Apply the changes by flushing the MariaDB privileges:
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+### 6. Exit the MariaDB Shell
+
+Exit the MariaDB shell by typing:
+
+```sql
+EXIT;
+```
+
+## Configuration for Laravel
+
+After creating the database and user, update your Laravel `.env` file with the correct database connection details.
+
+```plaintext
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=prueba_innclod
+DB_USERNAME=prueba_innclod
+DB_PASSWORD=prueba_innclod
+```
+## Exceute migrations and seeders
+```bash
+php artisan migrate --seed
+```
+## User credentials
+
+email: test@test.com
+password: Test@123
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,81 +174,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-
-# Database Creation for Laravel Project
-
-This document provides the steps to create a new MariaDB database for the Laravel project.
-
-## Prerequisites
-
-Before proceeding, ensure you have the following:
-- MariaDB server installed and running
-- Access to the MariaDB command line client with sufficient privileges
-
-## Steps
-
-### 1. Access the MariaDB Shell
-
-First, access the MariaDB shell using the MariaDB root user or another user with sufficient privileges to create databases and users.
-
-```bash
-mysql -u root -p
-```
-
-Enter the root password when prompted.
-
-### 2. Create the Database
-
-Create the `prueba_innclod` database by executing the following command in the MariaDB shell:
-
-```sql
-CREATE DATABASE prueba_innclod;
-```
-
-### 3. Create the User
-
-Create a new user named `prueba_innclod` with the password `prueba_innclod` using the following command:
-
-```sql
-CREATE USER 'prueba_innclod'@'localhost' IDENTIFIED BY 'prueba_innclod';
-```
-
-Replace `'localhost'` with `'%'` if you wish to allow this user to connect from any host.
-
-### 4. Grant Permissions
-
-Grant all privileges on the `prueba_innclod` database to the user `prueba_innclod` with the following command:
-
-```sql
-GRANT ALL PRIVILEGES ON prueba_innclod.* TO 'prueba_innclod'@'localhost';
-```
-
-### 5. Apply the Changes
-
-Apply the changes by flushing the MariaDB privileges:
-
-```sql
-FLUSH PRIVILEGES;
-```
-
-### 6. Exit the MariaDB Shell
-
-Exit the MariaDB shell by typing:
-
-```sql
-EXIT;
-```
-
-## Configuration for Laravel
-
-After creating the database and user, update your Laravel `.env` file with the correct database connection details.
-
-```plaintext
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=prueba_innclod
-DB_USERNAME=prueba_innclod
-DB_PASSWORD=prueba_innclod
-```

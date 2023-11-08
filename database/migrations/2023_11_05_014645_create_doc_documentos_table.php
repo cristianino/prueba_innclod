@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('DOC_DOCUMENTO', function (Blueprint $table) {
             $table->increments('DOC_ID');
             $table->string('DOC_NOMBRE', 50);
+            $table->string('DOC_CODIGO', 20);
+            $table->string('DOC_CONTENIDO', 4000);
             $table->unsignedInteger('DOC_ID_TIPO');
             $table->unsignedInteger('DOC_ID_PROCESO');
             $table->timestamps();
