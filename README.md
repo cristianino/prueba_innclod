@@ -1,6 +1,12 @@
 
 # Install
 
+## Clone repository
+```bash
+git clone git@github.com:cristianino/prueba_innclod.git
+cd ./prueba_innclod
+```
+
 ## Prerequisites
 
 Before proceeding, ensure you have the following:
